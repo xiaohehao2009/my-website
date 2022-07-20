@@ -1,0 +1,45 @@
+html, body {
+  margin: 0;
+  padding: 10px;
+  background: #faf8ef;
+  color: #776e65;
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+}
+h1 {
+  font-size: 40px;
+}
+input {
+  background: none;
+  border: 1px solid #5aa0e3;
+  border-radius: 2px;
+  width: 100px;
+  height: 20px;
+  line-height: 15px;
+  font-size: 15px;
+  color: #776e65;
+  padding: 2.5px;
+  outline: none;
+}
+button {
+  height: 25px;
+  width: 50px;
+  padding: 5px;
+  line-height: 15px;
+  background: #5aa0e3;
+  border: 0;
+  border-radius: 3px;
+  outline: none;
+}
+button:active {
+  background: #3a80c3;
+}
+hr {
+  border-width: 1px 0 0 0;
+}
+a {
+  color: #776e65;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
