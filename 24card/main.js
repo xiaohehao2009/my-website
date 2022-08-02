@@ -137,7 +137,7 @@
 
     function calc24(nums) {
         const arr = allMatrixs(nums);
-        const results = new Set();
+        const results = [];
         for (const nums of arr) {
             for (let i = 0; i < 64; i++) {
                 for (let flag = 0; flag < 5; flag++) {
@@ -147,11 +147,11 @@
                     ];
                     const num = calcNums(nums, ops, flag);
                     if (is24(num)) {
-                        results.add(stringify(nums, ops, flag) + " = 24");
+                        results.push(stringify(nums, ops, flag) + " = 24");
                     }
                 }
             }
         }
-        return [...results];
+        return results;
     }
 }());
