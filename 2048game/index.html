@@ -70,10 +70,6 @@
     </p>
     <hr />
     <p>
-      <strong class="important">提示:</strong> 这个网站是 2048 的离线版本。你可以在浏览器上打开 <a href="http://git.io/2048">http://git.io/2048</a> 游玩在线版本。其它应用程序或网站都是此版本的衍生品, 打开时请小心中木马病毒。
-    </p>
-    <hr />
-    <p>
       由 <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli</a> 制作, 基于 <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">Veewo Studio 的 1024,</a> 概念上类似于 <a href="http://asherv.com/threes/" target="_blank">Asher Vollmer 的 Threes</a>。
     </p>
     <hr />
@@ -81,11 +77,11 @@
       <strong class="important">作弊:</strong>
     </p>
     <p>
-      <div class="u" onclick="GameManager.startTiles=Number(prompt('请输入你想要的开始方块数\n请输入 1 至 16 之间的数',2)) || 2">作弊项 1: 改变开始方块数</div>
+      <div class="u" onclick="GameManager.startTiles=Number(prompt('请输入你想要的开始方块数\n请输入 1 至 16 之间的数',2))||2">作弊项 1: 改变开始方块数</div>
       <div class="u" onclick="confirm('确定要重置开始方块数吗')&&(GameManager.startTiles=2)">作弊项 2: 重置开始方块数</div>
-      <div class="u" onclick="GameManager.randomTiles=Number(prompt('请输入你想要的随机方块数\n请输入 1 至 16 之间的数',1)) || 1">作弊项 3: 改变随机方块数</div>
+      <div class="u" onclick="GameManager.randomTiles=Number(prompt('请输入你想要的随机方块数\n请输入 1 至 16 之间的数',1))||1">作弊项 3: 改变随机方块数</div>
       <div class="u" onclick="confirm('确定要重置随机方块数吗')&&(GameManager.randomTiles=1)">作弊项 4: 重置随机方块数</div>
-      <div class="u" onclick="GameManager.randomTile=prompt('请输入你想要的获得随机方块值的 js 表达式','Math.random()<0.9?2:4') || 'Math.random()<0.9 ?2:4'">作弊项 5: 改变随机方块值</div>
+      <div class="u" onclick="GameManager.randomTile=prompt('请输入你想要的获得随机方块值的 js 表达式','Math.random()<0.9?2:4')||'Math.random()<0.9?2:4'">作弊项 5: 改变随机方块值</div>
       <div class="u" onclick="confirm('确定要重置随机方块值吗')&&(GameManager.randomTile='Math.random()<0.9?2:4')">作弊项 6: 重置随机方块值</div>
       <div class="u" onclick="game.score=(Number(prompt('请输入你想要的分数',0))||0);game.actuate()">作弊项 7: 改变分数</div>
       <div class="u" onclick="game.storageManager.setBestScore((Number(prompt('请输入你想要的最高分',0))||0)),game.actuate()">作弊项 8: 改变最高分</div>
