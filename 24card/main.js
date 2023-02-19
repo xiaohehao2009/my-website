@@ -1,7 +1,7 @@
 (function() {
     const e = id => document.getElementById(id);
     const input = e("input");
-    const target = e("target");
+    const targetEle = e("target");
     const button = e("button");
     const time = e("time");
     const output = e("output");
@@ -37,15 +37,14 @@
         } else {
             nums = value.split(/\s+|,/).map(fn2);
             if (nums.includes(NaN) ||
-                nums.some(v => v > 100 || v < 0) ||
                 nums.length !== 4) {
                 fn(output);
                 return;
             }
         }
         const begin = Date.now();
-	const targetNum = +target.value;
-        const result = calc(nums, targetNum);
+	const target = Number(targetEle.value);
+        const result = calc(nums, target);
         const end = Date.now();
         time.innerHTML = (end - begin) / 1000 + " 秒"
         if (!result.length) {
