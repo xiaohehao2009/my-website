@@ -1,7 +1,7 @@
 (function() {
     const e = id => document.getElementById(id);
     const input = e("input");
-    const targetEle = e("target");
+    const target = e("target");
     const button = e("button");
     const time = e("time");
     const output = e("output");
@@ -43,8 +43,8 @@
             }
         }
         const begin = Date.now();
-	const target = Number(targetEle.value);
-        const result = calc(nums, target);
+	const targetNumber = Number(target.value);
+        const result = calc24(nums, targetNumber);
         const end = Date.now();
         time.innerHTML = (end - begin) / 1000 + " 秒"
         if (!result.length) {
@@ -136,7 +136,7 @@
         return Math.abs(num - target) < 1e-7;
     }
 
-    function calc(nums, target) {
+    function calc24(nums, target) {
         const arr = allMatrixs(nums);
         const results = [];
         for (const nums of arr) {
