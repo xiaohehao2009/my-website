@@ -148,7 +148,7 @@
                     ];
                     const num = calcNums(nums, ops, flag);
                     if (is(num, target)) {
-                        results.push(stringify(nums, ops, flag) + " = 24");
+                        results.push(stringify(nums, ops, flag) + " = " + target);
                     }
                 }
             }
