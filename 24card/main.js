@@ -1,6 +1,7 @@
 (function() {
     const e = id => document.getElementById(id);
     const input = e("input");
+    const target = e("target");
     const button = e("button");
     const time = e("time");
     const output = e("output");
@@ -43,7 +44,8 @@
             }
         }
         const begin = Date.now();
-        const result = calc24(nums);
+	const targetNum = +target.value;
+        const result = calc(nums, targetNum);
         const end = Date.now();
         time.innerHTML = (end - begin) / 1000 + " 秒"
         if (!result.length) {
@@ -131,11 +133,11 @@
         }
     }
 
-    function is24(num) {
-        return Math.abs(num - 24) < 1e-7;
+    function is(num, target) {
+        return Math.abs(num - target) < 1e-7;
     }
 
-    function calc24(nums) {
+    function calc(nums, target) {
         const arr = allMatrixs(nums);
         const results = [];
         for (const nums of arr) {
@@ -146,7 +148,7 @@
                         i >> 4
                     ];
                     const num = calcNums(nums, ops, flag);
-                    if (is24(num)) {
+                    if (is(num, target)) {
                         results.push(stringify(nums, ops, flag) + " = 24");
                     }
                 }
