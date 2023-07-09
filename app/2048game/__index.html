@@ -84,10 +84,19 @@
       <div class="u" onclick="GameManager.randomTile=prompt('请输入你想要的获得随机方块值的 js 表达式','Math.random()<0.9?2:4')||'Math.random()<0.9?2:4'">作弊项 5: 改变随机方块值</div>
       <div class="u" onclick="confirm('确定要重置随机方块值吗')&&(GameManager.randomTile='Math.random()<0.9?2:4')">作弊项 6: 重置随机方块值</div>
       <div class="u" onclick="game.score=(Number(prompt('请输入你想要的分数',0))||0);game.actuate()">作弊项 7: 改变分数</div>
-      <div class="u" onclick="game.storageManager.setBestScore((Number(prompt('请输入你想要的最高分',0))||0)),game.actuate()">作弊项 8: 改变最高分</div>
+      <div class="u" onclick="game.storageManager.setBestScore((Number(prompt('请输入你想要的最高分',0))||0));game.actuate()">作弊项 8: 改变最高分</div>
     </p>
   </div>
 
-  <script src="js/bundle.js"></script>
+  <script src="js/bind_polyfill.js"></script>
+  <script src="js/classlist_polyfill.js"></script>
+  <script src="js/animframe_polyfill.js"></script>
+  <script src="js/keyboard_input_manager.js"></script>
+  <script src="js/html_actuator.js"></script>
+  <script src="js/grid.js"></script>
+  <script src="js/tile.js"></script>
+  <script src="js/local_storage_manager.js"></script>
+  <script src="js/game_manager.js"></script>
+  <script src="js/application.js"></script>
 </body>
 </html>
