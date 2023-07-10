@@ -2,9 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { parse } from 'qs';
+import { usePathname, useRouter} from 'next/navigation';
 
 export default function Component() {
     const [count, setCount] = useState(null);
+    const router = useRouter();
+    const pathname = usePathname();
     useEffect(() => {
         let c = +localStorage.getItem('count') || 0;
         const s = location.search.slice(1);
@@ -24,7 +27,8 @@ export default function Component() {
             }
         }
         setCount(c);
-    }, []);
+        if (s.length) router.replace(pathname);
+    }, [pathname]);
     useEffect(() => {
         if (count !== null) localStorage.setItem('count', String(count));
     }, [count]);
