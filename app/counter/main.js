@@ -1,14 +1,32 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { parse } from 'qs';
 
 export default function Component() {
     const [count, setCount] = useState(null);
     useEffect(() => {
-        setCount(+localStorage.getItem('count') || 0);
+        let c = +localStorage.getItem('count') || 0;
+        const s = location.search.slice(1);
+        if (s.length) {
+            const obj = parse(s);
+            if (Object.hasOwn(obj, 'set')) {
+                c = +obj.set;
+            }
+            if (Object.hasOwn(obj, 'add')) {
+                c += obj.add;
+            }
+            if (Object.hasOwn(obj, 'mul')) {
+                c *= obj.mul;
+            }
+            if (Object.hasOwn(obj, 'div')) {
+                c = Math.floor(c / obj.div);
+            }
+        }
+        setCount(c);
     }, []);
     useEffect(() => {
-        localStorage.setItem('count', String(count));
+        if (count !== null) localStorage.setItem('count', String(count));
     }, [count]);
 
     return (
