@@ -17,13 +17,13 @@ export default function Component() {
                 c = +obj.set;
             }
             if (Object.hasOwn(obj, 'add')) {
-                c += obj.add;
+                c += +obj.add;
             }
             if (Object.hasOwn(obj, 'mul')) {
                 c *= obj.mul;
             }
             if (Object.hasOwn(obj, 'div')) {
-                c = Math.floor(c / obj.div);
+                c /= obj.div;
             }
         }
         setCount(c);
