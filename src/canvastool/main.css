@@ -1,0 +1,6 @@
+#img {
+  display: none;
+  width: 100%;
+  border: 2px solid #f00;
+  object-fit: contain;
+}
