@@ -1,8 +1,10 @@
-@import url(/fonts/clear-sans.css);
+@import url(fonts/clear-sans.css);
+
 html, body {
   margin: 0;
   padding: 0;
 }
+
 body {
   padding: 20px 0;
   background: #faf8ef;
@@ -10,61 +12,77 @@ body {
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 15px;
 }
+
 .container {
   margin: 0 auto;
   width: 280px;
 }
+
 h1 {
   margin: 0;
   font-size: 27px;
   font-weight: bold;
 }
+
 hr {
   margin: 20px 0 20px;
   border: none;
   border-top: 1px solid #d8d4d0;
 }
+
 p {
   margin: 0 0 10px;
   line-height: 1.65;
 }
+
 a {
   color: #776e65;
   font-weight: bold;
 }
+
 button {
   min-width: 4.5em;
-  padding: 4px 8px;
+  padding: 0 8px;
+  line-height: 2;
   background: #29b6f6;
   color: #fbfaf2;
   border: none;
   border-radius: 4px;
+  font-family: inherit;
   font-size: inherit;
 }
+
 button:active {
   background: #2196f3;
 }
+
 input[type='text'] {
   width: 7em;
-  padding: 4px 8px;
+  padding: 0 8px;
+  line-height: 2;
   background: none;
   border: 1px solid #2196f3;
   border-radius: 4px;
   outline: 0;
   color: #776e65;
+  font-family: inherit;
   font-size: inherit;
 }
+
 input[type='checkbox'] {
   margin: 0;
 }
+
 @media screen and (min-width: 520px) {
   body {
     padding: 80px 0;
     font-size: 18px;
   }
+
   .container {
     width: 500px;
   }
+
   h1 {
     font-size: 54px;
   }

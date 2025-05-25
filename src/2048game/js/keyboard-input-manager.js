@@ -2,7 +2,7 @@ function KeyboardInputManager() {
   this.events = {};
 
   if (window.navigator.msPointerEnabled) {
-    // Internet Explorer 10 style
+    //Internet Explorer 10 style
     this.eventTouchstart    = "MSPointerDown";
     this.eventTouchmove     = "MSPointerMove";
     this.eventTouchend      = "MSPointerUp";
@@ -25,13 +25,15 @@ KeyboardInputManager.prototype.on = function (event, callback) {
 KeyboardInputManager.prototype.emit = function (event, data) {
   var callbacks = this.events[event];
   if (callbacks) {
-    callbacks.forEach((callback) => {
+    callbacks.forEach(function (callback) {
       callback(data);
     });
   }
 };
 
 KeyboardInputManager.prototype.listen = function () {
+  var self = this;
+
   var map = {
     38: 0, // Up
     39: 1, // Right
@@ -48,7 +50,7 @@ KeyboardInputManager.prototype.listen = function () {
   };
 
   // Respond to direction keys
-  document.addEventListener("keydown", (event) => {
+  document.addEventListener("keydown", function (event) {
     var modifiers = event.altKey || event.ctrlKey || event.metaKey ||
                     event.shiftKey;
     var mapped    = map[event.which];
@@ -56,13 +58,13 @@ KeyboardInputManager.prototype.listen = function () {
     if (!modifiers) {
       if (mapped !== undefined) {
         event.preventDefault();
-        this.emit("move", mapped);
+        self.emit("move", mapped);
       }
     }
 
     // R key restarts the game
     if (!modifiers && event.which === 82) {
-      this.restart(event);
+      self.restart.call(self, event);
     }
   });
 
@@ -75,7 +77,7 @@ KeyboardInputManager.prototype.listen = function () {
   var touchStartClientX, touchStartClientY;
   var gameContainer = document.getElementsByClassName("game-container")[0];
 
-  gameContainer.addEventListener(this.eventTouchstart, (event) => {
+  gameContainer.addEventListener(this.eventTouchstart, function (event) {
     if ((!window.navigator.msPointerEnabled && event.touches.length > 1) ||
         event.targetTouches.length > 1) {
       return; // Ignore if touching with more than 1 finger
@@ -92,11 +94,11 @@ KeyboardInputManager.prototype.listen = function () {
     event.preventDefault();
   });
 
-  gameContainer.addEventListener(this.eventTouchmove, (event) => {
+  gameContainer.addEventListener(this.eventTouchmove, function (event) {
     event.preventDefault();
   });
 
-  gameContainer.addEventListener(this.eventTouchend, (event) => {
+  gameContainer.addEventListener(this.eventTouchend, function (event) {
     if ((!window.navigator.msPointerEnabled && event.touches.length > 0) ||
         event.targetTouches.length > 0) {
       return; // Ignore if still touching with one or more fingers
@@ -120,7 +122,7 @@ KeyboardInputManager.prototype.listen = function () {
 
     if (Math.max(absDx, absDy) > 10) {
       // (right : left) : (down : up)
-      this.emit("move", absDx > absDy ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0));
+      self.emit("move", absDx > absDy ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0));
     }
   });
 };

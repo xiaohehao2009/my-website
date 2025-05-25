@@ -2,23 +2,21 @@ const { parallel, src, dest } = require("gulp");
 const uglify = require("gulp-uglify");
 const cleanCSS = require("gulp-clean-css");
 
-const sourceDir = "src";
-const outputDir = "out";
-
 const minifyJS = () =>
-  src(`${sourceDir}/**/*.js`)
+  src('src/**/*.js')
     .pipe(uglify())
-    .pipe(dest(outputDir));
+    .pipe(dest('out'));
 
 const minifyCSS = () =>
-  src(`${sourceDir}/**/*.css`)
-    .pipe(cleanCSS({
-      inline: "none"
-    }))
-    .pipe(dest(outputDir));
+  src('src/**/*.css')
+    .pipe(cleanCSS({ inline: false }))
+    .pipe(dest('out'));
 
 const transport = () =>
-  src([`${sourceDir}/**/*`,`!${sourceDir}/**/*.js`,`${sourceDir}/**/*.css`])
-    .pipe(dest(outputDir));
+  src(
+    ['src/**/*','!src/**/*.js','!src/**/*.css'],
+    { encoding: false }
+  )
+    .pipe(dest('out'));
 
 exports.default = parallel(minifyJS, minifyCSS, transport);

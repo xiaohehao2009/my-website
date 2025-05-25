@@ -8,27 +8,30 @@ function HTMLActuator() {
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
-  window.requestAnimationFrame(() => {
-    this.clearContainer(this.tileContainer);
+  var self = this;
 
-    grid.cells.forEach((column) => {
-      column.forEach((cell) => {
+  window.requestAnimationFrame(function () {
+    self.clearContainer(self.tileContainer);
+
+    grid.cells.forEach(function (column) {
+      column.forEach(function (cell) {
         if (cell) {
-          this.addTile(cell);
+          self.addTile(cell);
         }
       });
     });
 
-    this.updateScore(metadata.score);
-    this.updateBestScore(metadata.bestScore);
+    self.updateScore(metadata.score);
+    self.updateBestScore(metadata.bestScore);
 
     if (metadata.terminated) {
       if (metadata.over) {
-        this.message(false); // You lose
+        self.message(false); // You lose
       } else if (metadata.won) {
-        this.message(true); // You win!
+        self.message(true); // You win!
       }
     }
+
   });
 };
 
@@ -44,6 +47,8 @@ HTMLActuator.prototype.clearContainer = function (container) {
 };
 
 HTMLActuator.prototype.addTile = function (tile) {
+  var self = this;
+
   var wrapper   = document.createElement("div");
   var inner     = document.createElement("div");
   var position  = tile.previousPosition || { x: tile.x, y: tile.y };
@@ -61,17 +66,17 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
-    window.requestAnimationFrame(() => {
-      classes[2] = this.positionClass({ x: tile.x, y: tile.y });
-      this.applyClasses(wrapper, classes); // Update the position
+    window.requestAnimationFrame(function () {
+      classes[2] = self.positionClass({ x: tile.x, y: tile.y });
+      self.applyClasses(wrapper, classes); // Update the position
     });
   } else if (tile.mergedFrom) {
     classes.push("tile-merged");
     this.applyClasses(wrapper, classes);
 
     // Render the tiles that merged
-    tile.mergedFrom.forEach((merged) => {
-      this.addTile(merged);
+    tile.mergedFrom.forEach(function (merged) {
+      self.addTile(merged);
     });
   } else {
     classes.push("tile-new");
@@ -121,7 +126,7 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 
 HTMLActuator.prototype.message = function (won) {
   var type    = won ? "game-won" : "game-over";
-  var message = won ? "你赢了!"   : "你失败了";
+  var message = won ? "你赢了!" : "你失败了";
 
   this.messageContainer.classList.add(type);
   this.messageContainer.getElementsByTagName("p")[0].textContent = message;
