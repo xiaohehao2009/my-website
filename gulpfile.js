@@ -4,12 +4,18 @@ const cleanCSS = require("gulp-clean-css");
 
 const minifyJS = () =>
   src('src/**/*.js')
-    .pipe(uglify())
+    .pipe(uglify({
+      output: {
+        comments: /^!/
+      }
+    }))
     .pipe(dest('out'));
 
 const minifyCSS = () =>
   src('src/**/*.css')
-    .pipe(cleanCSS({ inline: false }))
+    .pipe(cleanCSS({
+      inline: false
+    }))
     .pipe(dest('out'));
 
 const transport = () =>
