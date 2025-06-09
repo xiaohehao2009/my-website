@@ -13,7 +13,7 @@ App.prototype.setup = function () {
 };
 
 App.prototype.getCount = function () {
-  var string = localStorage.getItem("count");
+  var string = localStorage.getItem("counter-count");
   var result = Number(string);
   var dict = this.parseURL();
 
@@ -105,7 +105,7 @@ App.prototype.cleanURL = function () {
 };
 
 App.prototype.setCount = function () {
-  localStorage.setItem("count", this.count);
+  localStorage.setItem("counter-count", this.count);
   this.span.textContent = this.count;
 };
 
